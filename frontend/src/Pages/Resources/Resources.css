@@ -1,0 +1,65 @@
+body {
+    font-family: "Poppins", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.accord-pad {
+    padding: 5rem !important;
+}
+
+.accordion-item {
+    margin-bottom: 15px !important;
+    /* Adjust the margin as needed */
+}
+
+/* Round the corners of each accordion item */
+.accordion-button {
+    border-radius: 10px !important;
+    /* Adjust the border-radius as needed */
+}
+
+/* Apply an inner shadow to each accordion item */
+.accordion-item {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1) !important;
+    /* Adjust the shadow properties as needed */
+}
+
+/* Resources.css */
+
+.intro-section {
+    background-color: #007bff;
+    /* Set your desired background color */
+    color: #fff;
+    /* Text color */
+    padding: 50px;
+    text-align: center;
+    border-bottom: 2px solid #0056b3;
+    /* Add a border at the bottom */
+    box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.75);
+    /* Add a subtle shadow */
+}
+
+.intro-section h1 {
+    font-size: 60px;
+    margin: 0px 20px;
+}
+
+.intro-section p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+/* Adjust the font sizes, colors, padding, and other properties to match your design */
+
+.accordion-section {
+    box-shadow: 0 0 10px rgba(21, 0, 128, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.accordion-section:hover {
+    box-shadow: 20px -20px 20px grey;
+}
