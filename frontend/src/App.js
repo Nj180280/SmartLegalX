@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer/Footer.js'
 import Resources from './Pages/Resources/Resources.js'
 import Textsummarizer from './Pages/TextSummarizer/Textsummarizer.js'
+import Lawyerform from './Pages/Lawyerform.jsx'
 import Home from './Pages/Home/Home';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/textsum" element={<Textsummarizer />} />
           <Route path="/resource" element={<Resources />} />
+          <Route path="/lawyer" element={<Lawyerform />} />
         </Routes>
         <Footer />
       </BrowserRouter>
