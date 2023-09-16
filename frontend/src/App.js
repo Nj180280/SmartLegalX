@@ -4,6 +4,7 @@ import Chatbot from './Pages/ChatBox/Chatbox.js'
 // import Navbar from './Components/Navbar/Navbar.js'
 import Footer from './Components/Footer/Footer.js'
 import Resources from './Pages/Resources/Resources.js'
+import Textsummarizer from './Pages/TextSummarizer/Textsummarizer.js'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/resource" element={<Resources />} />
+          <Route path="/textsum" element={<Textsummarizer />} />
         </Routes>
         <Footer />
       </BrowserRouter>

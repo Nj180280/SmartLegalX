@@ -155,10 +155,10 @@ const Login = () => {
                             <line x1="20" y1="8" x2="20" y2="14" />
                             <line x1="23" y1="11" x2="17" y2="11" />
                         </svg>
-                        <h1>Hello !</h1>
-                        <p>Enter your personal details and start the journey with us.</p>
+                        <h1>Welcome Back!</h1>
+                        <p>To stay connected with us, please log in with your personal info</p>
                         <button type="button" id="register" onClick={handleRegisterClick}>
-                            Register
+                            Login
                         </button>
                     </div>
                 </div>
@@ -181,10 +181,10 @@ const Login = () => {
                             <polyline points="10 17 15 12 10 7" />
                             <line x1="15" y1="12" x2="3" y2="12" />
                         </svg>
-                        <h1>Welcome Back!</h1>
-                        <p>To stay connected with us, please log in with your personal info</p>
+                        <h1>Hello !</h1>
+                        <p>Enter your personal details and start the journey with us.</p>
                         <button type="button" id="login" onClick={handleLoginClick}>
-                            Log In
+                            Register
                         </button>
                     </div>
                 </div>
@@ -194,22 +194,22 @@ const Login = () => {
                         <h1>Sign Up</h1>
                         <label className="inp" htmlFor="emailInput">
                             <input placeholder="Enter your email" id="emailInput" type="email" value={email1} onChange={(e) => setEmail1(e.target.value)} />
-                            <span className="label">Email</span>
+                            {/* <span className="label">Email</span> */}
                             <span className="focus-bg"></span>
                         </label>
                         <label className="inp" htmlFor="nameInput">
                             <input placeholder="Enter your name" id="nameInput" type="text" value={name1} onChange={(e) => setName1(e.target.value)} />
-                            <span className="label">Name</span>
+                            {/* <span className="label">Name</span> */}
                             <span className="focus-bg"></span>
                         </label>
                         <label className="inp" htmlFor="phoneInput">
                             <input placeholder="Enter your phone number" id="phoneInput" type="text" value={phone1} onChange={(e) => setPhone1(e.target.value)} />
-                            <span className="label">Phone Number</span>
+                            {/* <span className="label">Phone Number</span> */}
                             <span className="focus-bg"></span>
                         </label>
                         <label className="inp" htmlFor="passwordInput">
                             <input placeholder="Enter your password" id="passwordInput" type="password" value={password1} onChange={(e) => setPassword1(e.target.value)} />
-                            <span className="label">Password</span>
+                            {/* <span className="label">Password</span> */}
                             <span className="focus-bg"></span>
                         </label>
                         <input className="LoginBtn" type="button" onClick={handleClick1} value="Sign Up" />

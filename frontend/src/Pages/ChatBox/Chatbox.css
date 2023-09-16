@@ -2,9 +2,14 @@ body {
   font-family: "Poppins", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.4;
-  background-color: rgb(7, 7, 7);
+  background-color: white !important;
   margin: 0;
   padding: 0;
+  color: black !important;
+}
+
+.ta{
+  border-width: 2px;
 }
 
 .chat-box {
