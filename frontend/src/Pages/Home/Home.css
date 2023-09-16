@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600&display=swap");
+/* 
+font-family: 'Roboto Slab', serif;
+*/
+
+.homepage {
+  box-sizing: border-box;
+  background-color: white;
+  width: 100%;
+  height: calc(220vh - 60px);
+  position: relative;
+  /* Ensure the hero section is a positioned container for absolute positioning */
+  box-sizing: border-box;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3%;
+  padding-top: 50px;
+}
+
+/* .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+} */
+
+.Hero-heading {
+  max-width: 600px;
+  z-index: 2;
+}
+
+.hero-img {
+  max-width: 600px;
+  z-index: 2;
+}
+
+.Hero-heading h1 {
+  margin: 0;
+  padding: 0;
+  color: #1e2340;
+  letter-spacing: 2px;
+  font-size: 45px;
+  font-family: "Roboto Slab", serif;
+  line-height: 60px;
+}
+
+.hero-button {
+  margin-top: 50px;
+  z-index: 2;
+}
+
+.hero-button button {
+  padding: 10px 25px;
+  font-weight: 600;
+  margin-right: 60px;
+  border: 2px solid;
+  border-radius: 30px;
+  /* padding: 10px 20px; */
+  cursor: pointer;
+  outline: none;
+  font-size: 20px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Glowing effect for the yellow button */
+.hero-button button.yellow-glow {
+  background-color: #ffcc29;
+  /* Yellow background color */
+  border-color: #ffcc29;
+}
+
+/* Glowing effect for the teal green button */
+.hero-button button.teal-glow {
+  background-color: #00a896;
+  /* Teal green background color */
+  border-color: #00a896;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px 0px #ffcc29;
+    /* Yellow glow color */
+  }
+
+  50% {
+    box-shadow: 0 0 20px 5px rgba(255, 204, 41, 0.8);
+    /* Slightly larger yellow glow */
+  }
+
+  100% {
+    box-shadow: 0 0 5px 0px #ffcc29;
+    /* Yellow glow color */
+  }
+}
+
+/* Apply the animation to the glowing buttons */
+.hero-button button.yellow-glow:hover,
+.hero-button button.teal-glow:hover {
+  animation: glow 1.5s infinite;
+  /* Apply the glow animation on hover */
+}
+
+.hero-img img {
+  max-height: 550px;
+  max-width: 550px;
+  height: 550px;
+  width: auto;
+}

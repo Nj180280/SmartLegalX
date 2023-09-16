@@ -1,0 +1,17 @@
+ // <div className="service-container">
+    //   {services.map((service, index) => (
+    //     <div className="service-card" key={index}>
+    //       <img
+    //         src={service.image}
+    //         alt={service.title}
+    //         className="service-img"
+    //       />
+    //       <h3 className="service-title">{service.title}</h3>
+    //       <p className="service-description">{service.description}</p>
+    //       <Link to={service.link} className="service-button">
+    //         Explore
+    //       </Link>{" "}
+    //       {/* Use Link to direct the user */}
+    //     </div>
+    //   ))}
+    // </div>
