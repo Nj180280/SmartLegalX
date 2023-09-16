@@ -27,6 +27,7 @@ function App() {
           <Route path="/textsum" element={<Textsummarizer />} />
           <Route path="/resource" element={<Resources />} />
           <Route path="/lawyer" element={<Lawyerform />} />
+          {/* <Route path="/lawyers" element={<Lawyer />} /> */}
         </Routes>
         <Footer />
       </BrowserRouter>

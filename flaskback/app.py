@@ -1,11 +1,72 @@
 from flask import Flask, request, send_file, jsonify
+from flask_cors import CORS
+
+from transformers import pipeline
+import fitz  # PyMuPDF library for PDF text extraction
+
+
 from docx import Document
 from datetime import datetime  # Import the datetime module
 
-from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)  # Add this line to enable CORS for your Flask app
+
+summarizer = pipeline("summarization", model="t5-base")
+
+
+'''
+summary
+'''
+@app.route('/summarize', methods=['POST'])
+def summarize():
+    # Get the input text from the form
+    article = request.form['article']
+
+    # Perform summarization using the pipeline
+    summary = summarizer(article, max_length=130, min_length=30, do_sample=False)
+
+    # Extract the summary text from the result
+    summary_text = summary[0]['summary_text']
+
+    # Create a dictionary to store the summary
+    summary_dict = {'summary': summary_text}
+
+    # Return the summary as JSON
+    return jsonify(summary_dict)
+
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    file = request.files.get('file')
+
+    if file and file.filename.endswith('.pdf'):
+        pdf = fitz.open(file)
+        text = ""
+
+        for page_num in range(pdf.page_count):
+            page = pdf.load_page(page_num)
+            text += page.get_text()
+
+        # Implement your summarization logic here
+        summary = summarizer(text, max_length=130, min_length=30, do_sample=False)
+
+        # Extract the summary text from the result
+        summary_text = summary[0]['summary_text']
+
+        # Create a dictionary to store the summary
+        summary_dict = {'summary': summary_text}
+
+        # Return the summary as JSON
+        return jsonify(summary_dict)
+
+    return jsonify({'error': 'Invalid file format'})
+
+
+
+'''
+generate will template using user form input
+'''
 
 def format_date(date):
     try:
@@ -15,7 +76,6 @@ def format_date(date):
     except ValueError:
         formatted_date = ''  # Handle invalid date format gracefully if needed
     return formatted_date
-
 
 @app.route('/generate_will', methods=['POST'])
 def generate_document():
