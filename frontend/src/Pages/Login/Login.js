@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './Login.css';
-// import axios from 'axios';
+import axios from 'axios';
 
 const Login = () => {
-    //    const navigate = useNavigate();
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -41,14 +41,14 @@ const Login = () => {
         }
         console.log(formData)
 
-        //   try {
-        //      const response = await axios.post('http://localhost:8800/api/auth/register', formData);
-        //      console.log(response.data);
-        //      console.log("Register succesful")
-        //      navigate("/");
-        //   } catch (error) {
-        //      console.error(error.response);
-        //   }
+        try {
+            const response = await axios.post('http://localhost:8800/api/auth/register', formData);
+            console.log(response.data);
+            console.log("Register succesful")
+            navigate("/");
+        } catch (error) {
+            console.error(error.response);
+        }
     };
 
     const validatePassword = (password) => {
@@ -73,18 +73,18 @@ const Login = () => {
             password: password
         }
 
-        //   try {
-        //      const response = await axios.post('http://localhost:8800/api/auth/login', formData, {
-        //         withCredentials: true,
-        //         credentials: "include",
-        //       });
-        //      console.log(response.data);
-        //      console.log("Login succesful");
-        //      navigate("/");
-        //      window.location.reload();
-        //   } catch (error) {
-        //      console.error(error.response);
-        //   }
+        try {
+            const response = await axios.post('http://localhost:8800/api/auth/login', formData, {
+                withCredentials: true,
+                credentials: "include",
+            });
+            console.log(response.data);
+            console.log("Login succesful");
+            navigate("/");
+            window.location.reload();
+        } catch (error) {
+            console.error(error.response);
+        }
     };
 
     const [containerClass, setContainerClass] = useState('');
@@ -97,24 +97,6 @@ const Login = () => {
         setContainerClass('close');
     };
 
-    // useEffect(
-    //    () => {
-    //    if (navigator.geolocation) {
-    //       navigator.geolocation.getCurrentPosition(
-    //          position => {
-    //             setLocation({
-    //                lat: position.coords.latitude,
-    //                lng: position.coords.longitude
-    //             });
-    //          },
-    //          error => {
-    //             console.log(error);
-    //          }
-    //       );
-    //    } else {
-    //       console.log("Geolocation is not supported by this browser.");
-    //    }
-    // }, []);
 
     return (
         <>
