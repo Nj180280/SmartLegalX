@@ -5,7 +5,7 @@ import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer/Footer.js'
 import Resources from './Pages/Resources/Resources.js'
 import Textsummarizer from './Pages/TextSummarizer/Textsummarizer.js'
-import Lawyerform from './Pages/Lawyerform.jsx'
+import Lawyerform from './Pages/Lawyerform/Lawyerform.js'
 import Home from './Pages/Home/Home';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
