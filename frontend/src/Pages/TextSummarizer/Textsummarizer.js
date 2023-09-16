@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import 'C:/Users/atharva jadhav/Technovate/35_ZXC/frontend/src/Pages/TextSummarizer/Textsummarizer.css';
+import './Textsummarizer.css';
 
 function Textsummarizer() {
     const chatBoxRef = useRef(null);
