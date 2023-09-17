@@ -8,7 +8,7 @@
   overflow-x: auto;
   margin: 0 calc((100vw - 1260px) / 2);
   text-align: center;
-  margin-top: 300px;
+  margin-top: 100px;
   align-items: flex-end; /* Align items at the bottom */
 }
 
