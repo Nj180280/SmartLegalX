@@ -14,12 +14,12 @@ const Navbarlist = () => {
   const location = useLocation();
 
   const navbarList = [
-    {
-      title: "Home",
-      url: "/",
-      cName: "Navlinks",
-      icon: faHome,
-    },
+    // {
+    //   title: "Chatbot",
+    //   url: "/chatbot",
+    //   cName: "Navlinks",
+    //   icon: faHome,
+    // },
     {
       title: "DocMaker",
       url: "/docum",
@@ -47,17 +47,22 @@ const Navbarlist = () => {
   ];
   return (
     <>
+    <li>
+      <a href='https://www.amazon.in' target="_blank" style={{textDecoration:'none', color:'black'}}>ChatBot</a>
+    </li>
       {navbarList.map((item, index) => {
         const isActive = location.pathname === item.url;
         const iconClass = isActive ? "active-icon" : "";
         const linkClass = isActive ? "active" : "";
         return (
+          <div>
           <li key={index} className={linkClass}>
             <Link to={item.url} className={`${item.cName}`}>
               <FontAwesomeIcon icon={item.icon} className={iconClass} />
               {item.title}
             </Link>
           </li>
+          </div>
         );
       })}
     </>
