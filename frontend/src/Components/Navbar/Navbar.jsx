@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="ml-auto">
           {isLoginPage ? null : (
             <button onClick={handleSignOut} className="login-button">
-              <Link to="/login"><p>Sign Out</p></Link>
+              <Link to="/login">Sign out</Link>
             </button>
           )}
         </div>
@@ -29,7 +29,7 @@ const Navbar = () => {
         <div className="ml-auto">
           {isLoginPage ? null : (
             <button onClick={handleSignOut} className="login-button">
-              <Link to="/login"><p>Sign In</p></Link>
+              <Link to="/login">Sign in</Link>
             </button>
           )}
         </div>
@@ -39,13 +39,15 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="logo">
-        <img src="https://github.com/JAtharva22/html-css-projects/assets/93152317/2ca0f9ae-fe47-46a3-8428-f164435c126d" alt="Logo" />
+      <div className="logo-links">
+        <h2>
+          SmartLegalX
+        </h2>
+        <ul className="navitems">
+          <Navbarlist />
+        </ul>
       </div>
       <div id="google_translate_element"></div>
-      <ul className="navitems">
-        <Navbarlist />
-      </ul>
       {renderAuthButton()}
     </nav>
   );
