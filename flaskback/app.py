@@ -3,6 +3,8 @@ from flask_cors import CORS
 
 from transformers import pipeline
 import fitz  # PyMuPDF library for PDF text extraction
+import os
+import traceback
 
 
 from docx import Document
@@ -18,10 +20,12 @@ summarizer = pipeline("summarization", model="t5-base")
 '''
 summary
 '''
+
+
+
 @app.route('/summarize', methods=['POST'])
-def summarize():
-    # Get the input text from the form
-    article = request.form['article']
+def summarize_text():
+    article = request.json['article']
 
     # Perform summarization using the pipeline
     summary = summarizer(article, max_length=130, min_length=30, do_sample=False)
@@ -36,33 +40,28 @@ def summarize():
     return jsonify(summary_dict)
 
 
-@app.route('/upload', methods=['POST'])
+@app.route('/upload', methods=['GET'])
 def upload_file():
-    file = request.files.get('file')
+    pdf_path = "assets/IndianLegal.pdf"  # Replace with the path to your PDF file
+    pdf = fitz.open(pdf_path)
+    text = ""
+    for page_num in range(pdf.page_count):
+        page = pdf.load_page(page_num)
+        text += page.get_text()
 
-    if file and file.filename.endswith('.pdf'):
-        pdf = fitz.open(file)
-        text = ""
-
-        for page_num in range(pdf.page_count):
-            page = pdf.load_page(page_num)
-            text += page.get_text()
-
-        # Implement your summarization logic here
-        summary = summarizer(text, max_length=130, min_length=30, do_sample=False)
-
-        # Extract the summary text from the result
-        summary_text = summary[0]['summary_text']
-
-        # Create a dictionary to store the summary
-        summary_dict = {'summary': summary_text}
-
-        # Return the summary as JSON
-        return jsonify(summary_dict)
-
-    return jsonify({'error': 'Invalid file format'})
+        # Extracted text is now in the 'text' variable
 
 
+    summary = summarizer(text, max_length=130, min_length=30, do_sample=False)
+
+    # Extract the summary text from the result
+    summary_text = summary[0]['summary_text']
+
+    # Create a dictionary to store the summary
+    summary_dict = {'summary': summary_text}
+
+    # Return the summary as JSON
+    return jsonify(summary_dict)
 
 '''
 generate will template using user form input

@@ -1,11 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './Textsummarizer.css';
+import axios from 'axios';
 
 function Textsummarizer() {
     const messageInputRef = useRef(null);
+    const fileInputRef = useRef(null);
 
     const [inputText, setInputText] = useState('');
     const [outputText, setOutputText] = useState('');
+
+    const [pdfFile, setPdfFile] = useState(null);
+    const handlePDFChange = (event) => {
+        setPdfFile(event.target.files[0]);
+    }
 
     const handleInputChange = (e) => {
         setInputText(e.target.value);
@@ -16,7 +23,7 @@ function Textsummarizer() {
         setOutputText('');
     };
 
-    const summarizeText = () => {
+    const summarizeText = async () => {
         const textToSummarize = inputText.trim();
 
         if (textToSummarize === '') {
@@ -24,18 +31,43 @@ function Textsummarizer() {
             return;
         }
 
-        // Send the text to your summarization API or function
-        // Replace this with your actual summarization logic
-        const summarizedText = summarizeFunction(textToSummarize);
-
-        setOutputText(summarizedText);
+        // Send the text to your Flask API for summarization
+        axios
+            .post('/summarize', { article: textToSummarize })
+            .then((response) => {
+                const { summary } = response.data;
+                setOutputText(summary);
+            })
+            .catch((error) => {
+                console.error('Error summarizing text:', error);
+            });
     };
 
-    // Replace this function with your actual summarization logic
-    const summarizeFunction = (text) => {
-        // Implement your text summarization logic here
-        // For this example, we'll just return the input text as-is
-        return text;
+
+    const summarizeDoc = async () => {
+
+        // const formData = new FormData();
+        // formData.append('file', pdfFile);
+        try {
+            const response = await axios.get("/upload");
+            setOutputText(response.data.summary);
+        } catch (error) {
+            console.log(error);
+        }
+
+        // await fetch('/upload', {
+        //     body: formData
+        // }).then((response) => {
+        //     console.log("PDF file sent successfully");
+        //     return response.json();
+        // })
+        // .then((data) => {
+        //     setOutputText(data.summary);
+        //     console.log(data.summary);
+        //     })
+        // .catch((error) => {
+        //     console.error('Error summarizing PDF:', error);
+        // });
     };
 
     return (
@@ -51,8 +83,8 @@ function Textsummarizer() {
                     onChange={handleInputChange}
                 ></textarea>
                 <div className='my-4 uploads'>
-                    <label htmlFor="myfile" className='mx-4'><u>Select a file (only PDF/CSV/XML):</u></label>
-                    <input type="file" accept="application/pdf,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" id="myfile" name="myfile" />
+                    <label htmlFor="myfile" className='mx-4'><u>Select a file (PDF format):</u></label>
+                    <input type="file" name='file' accept=".pdf" onChange={handlePDFChange} />
                 </div>
             </div>
 
@@ -66,7 +98,14 @@ function Textsummarizer() {
                     Summarize Text
                 </button>
 
-                <button type="button" className="btn btn-primary my-4 mx-5" id="send-btn" >Summarize Doc</button>
+                <button
+                    type="button"
+                    className="btn btn-primary my-4 mx-5"
+                    id="send-btn"
+                    onClick={summarizeDoc}
+                >
+                    Summarize Doc
+                </button>
 
                 <button
                     type="button"
