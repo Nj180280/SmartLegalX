@@ -22,7 +22,7 @@ const Navbarlist = () => {
     },
     {
       title: "DocMaker",
-      url: "/docm",
+      url: "/docum",
       cName: "Navlinks",
       icon: faInfoCircle,
     },
