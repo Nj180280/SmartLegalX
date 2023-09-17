@@ -7,6 +7,7 @@ import Resources from './Pages/Resources/Resources.js'
 import Textsummarizer from './Pages/TextSummarizer/Textsummarizer.js'
 import Lawyerform from './Pages/Lawyerform/Lawyerform.js'
 import Home from './Pages/Home/Home';
+import Docum from './Pages/Docum/WillForm';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
-          {/* <Route path="/docum" element={<Docum />} /> */}
+          <Route path="/docum" element={<Docum />} />
           <Route path="/textsum" element={<Textsummarizer />} />
           <Route path="/resource" element={<Resources />} />
           <Route path="/lawyer" element={<Lawyerform />} />
