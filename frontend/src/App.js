@@ -7,7 +7,7 @@ import Resources from './Pages/Resources/Resources.js'
 import Textsummarizer from './Pages/TextSummarizer/Textsummarizer.js'
 import Lawyerform from './Pages/Lawyerform/Lawyerform.js'
 import Home from './Pages/Home/Home';
-import Docum from './Pages/Docum/WillForm';
+import Docum from './Pages/Docum/Docum.js';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 function App() {
