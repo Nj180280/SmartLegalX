@@ -17,14 +17,14 @@ const Services = () => {
       description:
         "Fill multiple government documents with your personal information. Filling up documents was never as easy!!!",
       image: "https://www.fjsolicitors.co.uk/wp-content/uploads/2022/12/drafting-legal-documents-scaled.jpg",
-      link: "/", // Add a link property for each service
+      link: "/docum", // Add a link property for each service
     },
     {
       title: "Check for top Advocates",
       description:
         "Connect with multiple top advocates registered with us on our advocates dashboard.",
       image: "https://github.com/JAtharva22/html-css-projects/assets/93152317/044c50eb-cbec-4ed7-85f2-e54daf4f992c",
-      link: "/lawyers", // Add a link property for each service
+      link: "/lawyer", // Add a link property for each service
     },
     {
       title: "Resources",

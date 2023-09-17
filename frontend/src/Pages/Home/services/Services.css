@@ -6,7 +6,7 @@
   display: flex;
   flex-wrap: nowrap; /* Prevent wrapping to the next line */
   overflow-x: auto;
-  margin-left: calc((100vw - 1260px) / 2);
+  margin: 0 calc((100vw - 1260px) / 2);
   text-align: center;
   margin-top: 300px;
   align-items: flex-end; /* Align items at the bottom */

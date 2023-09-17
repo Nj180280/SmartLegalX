@@ -25,10 +25,10 @@ const Footer = () => {
                 </h3>
                 <ul>
                   <li><a href="/">Home</a></li>
-                  <li><a href="/chatbot">Chatbot</a></li>
+                  <li><a href="#">Chatbot</a></li>
                   <li><a href="/textsum">Summarizer</a></li>
                   <li><a href="/lawyers">Ask Lawyer</a></li>
-                  <li><a href="#">Document Maker</a></li>
+                  <li><a href="/docum">Document Maker</a></li>
                   <li><a href="/resource">Resources</a></li>
                 </ul>
               </div>

@@ -33,7 +33,10 @@ const Home = () => {
 
           <div className="hero-button">
             <button className='btn btn-primary'>
+              <a href='https://wwww.amazon.com' style={{color:'white', textDecoration:'none'}}>
               Try It Out!
+              </a>
+              {/* bot link */}
             </button>
           </div>
 

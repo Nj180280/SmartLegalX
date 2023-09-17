@@ -41,7 +41,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="logo-links">
         <h2>
-          <Link to="/" style={{textDecoration:'none', color:'black'}}>SmartLegalX</Link>          
+          <Link to="/" style={{textDecoration:'none', color:'indigo'}}>SmartLegalX</Link>          
         </h2>
         <ul className="navitems">
           <Navbarlist />
