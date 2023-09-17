@@ -45,10 +45,15 @@ const Navbar = () => {
         </h2>
         <ul className="navitems">
           <Navbarlist />
+          <li>
+
+      <a href="http://localhost:8000" target="_blank" style={{textDecoration:'none',color:'black'}}>Chatbot</a>
+          </li>
         </ul>
       </div>
       <div id="google_translate_element"></div>
       {renderAuthButton()}
+
     </nav>
   );
 }

@@ -21,12 +21,6 @@ const Navbarlist = () => {
       icon: faHome,
     },
     {
-      title: "Chatbot",
-      url: "/chatbot",
-      cName: "Navlinks",
-      icon: faInfoCircle,
-    },
-    {
       title: "Summarizer",
       url: "/textsum",
       cName: "Navlinks",
@@ -52,12 +46,14 @@ const Navbarlist = () => {
         const iconClass = isActive ? "active-icon" : "";
         const linkClass = isActive ? "active" : "";
         return (
+          <>
           <li key={index} className={linkClass}>
             <Link to={item.url} className={`${item.cName}`}>
               <FontAwesomeIcon icon={item.icon} className={iconClass} />
               {item.title}
             </Link>
           </li>
+          </>
         );
       })}
     </>
