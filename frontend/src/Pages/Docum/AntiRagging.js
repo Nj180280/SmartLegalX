@@ -25,20 +25,20 @@ function ProformaForm() {
     e.preventDefault();
     try {
       // Send the form data to the backend API
-      const response = await axios.post('http://localhost:5000/submit_proforma', formData, {
+      const response = await axios.post('http://localhost:5000/anti_ragging', formData, {
         responseType: 'blob', // Receive a binary response (e.g., a document file)
       });
 
       // Create a blob URL to display the document (optional)
       const blob = new Blob([response.data], {
-        type: 'application/pdf', // Change the MIME type as needed
+        type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       });
       const url = window.URL.createObjectURL(blob);
 
       // Create an anchor element for downloading the file
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'proforma.pdf'; // Change the file name as needed
+      a.download = 'proforma.docx'; // Change the file name as needed
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
