@@ -21,17 +21,10 @@ const Navbarlist = () => {
     //   icon: faHome,
     // },
     {
-<<<<<<< HEAD
-      title: "Home",
-      url: "/",
-      cName: "Navlinks",
-      icon: faHome,
-=======
       title: "DocMaker",
       url: "/docum",
       cName: "Navlinks",
       icon: faInfoCircle,
->>>>>>> 54bb50dffad90d8bb5d8156247255314c904b482
     },
     {
       title: "Summarizer",
@@ -54,30 +47,19 @@ const Navbarlist = () => {
   ];
   return (
     <>
-    <li>
-      <a href='https://www.amazon.in' target="_blank" style={{textDecoration:'none', color:'black'}}>ChatBot</a>
-    </li>
       {navbarList.map((item, index) => {
         const isActive = location.pathname === item.url;
         const iconClass = isActive ? "active-icon" : "";
         const linkClass = isActive ? "active" : "";
         return (
-<<<<<<< HEAD
-          <>
-=======
           <div>
->>>>>>> 54bb50dffad90d8bb5d8156247255314c904b482
           <li key={index} className={linkClass}>
             <Link to={item.url} className={`${item.cName}`}>
               <FontAwesomeIcon icon={item.icon} className={iconClass} />
               {item.title}
             </Link>
           </li>
-<<<<<<< HEAD
-          </>
-=======
           </div>
->>>>>>> 54bb50dffad90d8bb5d8156247255314c904b482
         );
       })}
     </>
