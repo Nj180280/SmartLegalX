@@ -4,7 +4,7 @@
 .service-container {
   display: flex; /* Use flexbox to display cards in a horizontal line */
   overflow-x: auto; /* Add horizontal scrolling */
-  margin-left: calc((100vw - 1400px)/2);
+  margin-left: calc((100vw - 1260px)/2);
   /* transform: translateX(-50%); */
   text-align: center;
   margin-top: 300px;

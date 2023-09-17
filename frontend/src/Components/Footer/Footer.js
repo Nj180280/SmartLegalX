@@ -12,8 +12,8 @@ const Footer = () => {
               <div className="footer_widget">
                 <h3 className="footer_title">
                   <img src={Logo} alt="Your Logo" /><br/>                               
-                  <p className="footer_text">MastRoom was developed and designed by the founder 
-                  of Digiidunia in 2023 with the collaboration
+                  <p className="footer_text">SmartLegalX was developed and designed by the founder 
+                  of Technovate in 2023 with the collaboration
                   of a team of four members.</p>
                 </h3>
               </div>
@@ -24,12 +24,12 @@ const Footer = () => {
                   Quick Links
                 </h3>
                 <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Video Summary</a></li>
-                  <li><a href="#">Ask Lawyer</a></li>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/chatbot">Chatbot</a></li>
+                  <li><a href="/textsum">Summarizer</a></li>
+                  <li><a href="/lawyers">Ask Lawyer</a></li>
                   <li><a href="#">Document Maker</a></li>
-                  <li><a href="#">Resources</a></li>
+                  <li><a href="/resource">Resources</a></li>
                 </ul>
               </div>
             </div>

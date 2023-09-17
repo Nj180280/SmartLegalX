@@ -13,6 +13,12 @@
     height: 120px;
 }
 
+.logo-links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .logo img {
     width: 70px;
     height: auto;
@@ -56,23 +62,15 @@
     color: yellow;
 }
 
-.login-button {
-    /* text-decoration: none; */
-    padding: 8px 14px;
-    text-transform: uppercase;
-    font-weight: 500;
-    border-radius: 4px;
-    background: coral;
-    color: whitesmoke;
+.login-button{
+    font-size: 20px;
+    font-weight: 700;
+    background-color: indigo;
+    padding: 10px 25px;
+    border-radius: 30px;
 }
 
-.login-button:hover {
-    background-color: orange;
-    color: coral;
-    transition: 0.3s;
-}
-
-.login-button p {
+.login-button a{
     text-decoration: none;
-    color: white !important;
+    color: white;
 }

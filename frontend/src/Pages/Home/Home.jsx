@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import './Home.css';import Services from './services/Services.jsx';
 const Home = () => {
   const heroImages = [
-    "https://github.com/JAtharva22/html-css-projects/assets/93152317/6d4b7f7c-e287-45bf-bf04-72bab679f269",
-    "https://github.com/JAtharva22/html-css-projects/assets/93152317/044c50eb-cbec-4ed7-85f2-e54daf4f992c",
-    "https://github.com/JAtharva22/html-css-projects/assets/93152317/1212e7fc-dfb9-404a-a624-b05f7400e703",
+    "../../assets/hero2.png",
+    "../../assets/hero3.png",
+    "../../assets/hero4.png",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -28,12 +28,18 @@ const Home = () => {
           <h1>legal documentation</h1>
           <h1>and Assistant</h1>
           <h4>
-            Talk with our advanced AI/ML Legal Assistant about anything related to law and get accurate answers
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
+            repudiandae corrupti fugit explicabo totam iste tempore facere
+            pariatur ullam iusto! Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. A, atque!
           </h4>
 
           <div className="hero-button">
-            <button className='btn btn-primary'>
-              Try It Out!
+            <button className='yellow-glow'>
+              button1
+            </button>
+            <button className='teal-glow'>
+              button2
             </button>
           </div>
 

@@ -1,4 +1,5 @@
 import {
+  faBalanceScale,
   faFileAlt,
   faHome,
   faInfoCircle,
@@ -37,6 +38,12 @@ const Navbarlist = () => {
       cName: "Navlinks",
       icon: faQuestionCircle,
     },
+    {
+      title : "Lawyers",
+      url:"/lawyer",
+      cName :"Navlinks",
+      icon: faBalanceScale,
+    }
   ];
   return (
     <>
