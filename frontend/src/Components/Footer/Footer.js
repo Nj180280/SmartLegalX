@@ -28,7 +28,7 @@ const Footer = () => {
                   <li><a href="http://localhost:8000">Chatbot</a></li>
                   <li><a href="/textsum">Summarizer</a></li>
                   <li><a href="/lawyers">Ask Lawyer</a></li>
-                  <li><a href="#">Document Maker</a></li>
+                  <li><a href="/docum">Document Maker</a></li>
                   <li><a href="/resource">Resources</a></li>
                 </ul>
               </div>

@@ -41,7 +41,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="logo-links">
         <h2>
-          SmartLegalX
+          <Link to="/" style={{textDecoration:'none', color:'indigo'}}>SmartLegalX</Link>          
         </h2>
         <ul className="navitems">
           <Navbarlist />
@@ -52,6 +52,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div id="google_translate_element"></div>
+      <button className="login-button">
+        <Link to="/lawyer">For Advocates</Link>
+      </button>
       {renderAuthButton()}
 
     </nav>
