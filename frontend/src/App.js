@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
-          <Route path="/chatbot" element={<Chatbot />} />
+          {/* <Route path="/docum" element={<Docum />} /> */}
           <Route path="/textsum" element={<Textsummarizer />} />
           <Route path="/resource" element={<Resources />} />
           <Route path="/lawyer" element={<Lawyerform />} />

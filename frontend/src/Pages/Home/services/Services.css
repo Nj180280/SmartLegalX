@@ -1,13 +1,15 @@
 /* Service.css */
 
 /* Styling for the service container */
+/* Styling for the service container */
 .service-container {
-  display: flex; /* Use flexbox to display cards in a horizontal line */
-  overflow-x: auto; /* Add horizontal scrolling */
-  margin-left: calc((100vw - 1260px)/2);
-  /* transform: translateX(-50%); */
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping to the next line */
+  overflow-x: auto;
+  margin-left: calc((100vw - 1260px) / 2);
   text-align: center;
   margin-top: 300px;
+  align-items: flex-end; /* Align items at the bottom */
 }
 
 /* Styling for each service card */

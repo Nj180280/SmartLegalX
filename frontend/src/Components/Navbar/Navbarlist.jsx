@@ -21,8 +21,8 @@ const Navbarlist = () => {
       icon: faHome,
     },
     {
-      title: "Chatbot",
-      url: "/chatbot",
+      title: "DocMaker",
+      url: "/docm",
       cName: "Navlinks",
       icon: faInfoCircle,
     },
@@ -39,8 +39,8 @@ const Navbarlist = () => {
       icon: faQuestionCircle,
     },
     {
-      title : "Lawyers",
-      url:"/lawyer",
+      title : "Advocates",
+      url:"/lawyers",
       cName :"Navlinks",
       icon: faBalanceScale,
     }

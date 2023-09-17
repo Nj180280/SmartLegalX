@@ -7,26 +7,32 @@ const Services = () => {
 
   const services = [
     {
-      title: "Luxurious Rooms",
-      description:
-        "   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus in sapiente, impedit perspiciatis reiciendis dolor distinctio similique animi culpa aut!",
+      title: "Summarizer",
+      description:"Summarize any text or pdf doc file with a simple click!!! Its that easy ",
       image: "https://github.com/JAtharva22/html-css-projects/assets/93152317/6d4b7f7c-e287-45bf-bf04-72bab679f269",
-      link: "/luxurious-rooms", // Add a link property for each service
+      link: "/textsum", // Add a link property for each service
     },
     {
-      title: "Gourmet Dining",
+      title: "Document Maker",
       description:
-        "   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus in sapiente, impedit perspiciatis reiciendis dolor distinctio similique animi culpa aut!",
+        "Fill multiple government documents with your personal information. Filling up documents was never as easy!!!",
+      image: "https://www.fjsolicitors.co.uk/wp-content/uploads/2022/12/drafting-legal-documents-scaled.jpg",
+      link: "/", // Add a link property for each service
+    },
+    {
+      title: "Check for top Advocates",
+      description:
+        "Connect with multiple top advocates registered with us on our advocates dashboard.",
       image: "https://github.com/JAtharva22/html-css-projects/assets/93152317/044c50eb-cbec-4ed7-85f2-e54daf4f992c",
-      link: "/gourmet-dining", // Add a link property for each service
+      link: "/lawyers", // Add a link property for each service
     },
     {
-      title: "Spa & Wellness",
+      title: "Resources",
       description:
-        "   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus in sapiente, impedit perspiciatis reiciendis dolor distinctio similique animi culpa aut!",
-      image: "https://github.com/JAtharva22/html-css-projects/assets/93152317/1212e7fc-dfb9-404a-a624-b05f7400e703",
-      link: "/spa-wellness", // Add a link property for each service
-    },
+        "Stuck Somewhere?\nDont worry! Follow our easy resources on multiple legal processes.",
+        image: "https://github.com/JAtharva22/html-css-projects/assets/93152317/1212e7fc-dfb9-404a-a624-b05f7400e703",
+      link: "/resource", // Add a link property for each service
+    }
     // Add more services as needed
   ];
 

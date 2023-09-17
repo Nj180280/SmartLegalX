@@ -48,6 +48,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div id="google_translate_element"></div>
+      <button className="login-button">
+        <Link to="/lawyer">For Advocates</Link>
+      </button>
       {renderAuthButton()}
     </nav>
   );
