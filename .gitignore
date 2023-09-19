@@ -22,3 +22,8 @@ backend/node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#node server
+.wwebjs_auth
+.wwebjs_cache
+node_modules
