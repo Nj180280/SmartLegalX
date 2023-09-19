@@ -28,3 +28,5 @@ yarn-error.log*
 .wwebjs_cache
 node_modules
 .venv
+
+__pycache__
