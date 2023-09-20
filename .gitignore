@@ -27,6 +27,8 @@ yarn-error.log*
 .wwebjs_auth
 .wwebjs_cache
 node_modules
-.venv
 
+# model
 __pycache__
+vectorstore
+model/llama-2-7b-chat.ggmlv3.q8_0.bin
