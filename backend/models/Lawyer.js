@@ -21,12 +21,20 @@ const LawyerSchema = new mongoose.Schema(
     },
     profileImage: {
       type: String,
-      required: true
+      required: true,
     },
     idCard: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
+    profileImagePublicId: {
+      type: String,  // Store the public ID of the profile image in Cloudinary
+      required: true,
+    },
+    idCardPublicId: {
+      type: String,  // Store the public ID of the ID card image in Cloudinary
+      required: true,
+    },
   },
   { timestamps: true }
 );

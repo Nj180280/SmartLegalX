@@ -20,6 +20,10 @@ export const createLawyer = async (req, res, next) => {
       yearOfExperience,
       profileImage: profileImageResult.secure_url,
       idCard: idCardResult.secure_url,
+
+      // Store the Cloudinary public_ids in MongoDB
+      profileImagePublicId: profileImageResult.public_id,
+      idCardPublicId: idCardResult.public_id,
     });
 
     const savedLawyer = await newLawyer.save();
@@ -32,28 +36,59 @@ export const createLawyer = async (req, res, next) => {
 
 export const deleteLawyer = async (req, res, next) => {
   try {
-    await Lawyer.findByIdAndDelete(req.params.id);
-    res.status(200).json("Lawyer has been deleted.");
+    const lawyer = await Lawyer.findById(req.params.id);
+
+    if (!lawyer) {
+      return res.status(404).json({ error: "Lawyer not found." });
+    }
+
+    // Delete images from Cloudinary using public_ids
+    await cloudinary.uploader.destroy(lawyer.profileImagePublicId);
+    await cloudinary.uploader.destroy(lawyer.idCardPublicId);
+
+    // Delete lawyer from MongoDB
+    await lawyer.remove();
+
+    res.status(200).json({ message: "Lawyer has been deleted." });
   } catch (err) {
     next(err);
   }
 };
 
+
+
 export const getLawyer = async (req, res, next) => {
   try {
-    const Lawyer = await Lawyer.findById(req.params.id);
-    res.status(200).json(Lawyer);
+    const lawyer = await Lawyer.findById(req.params.id);
+
+    if (!lawyer) {
+      return res.status(404).json({ error: "Lawyer not found." });
+    }
+
+    // Retrieve the image URLs from Cloudinary
+    const profileImage = await cloudinary.url(lawyer.profileImage, { secure: true });
+    const idCard = await cloudinary.url(lawyer.idCard, { secure: true });
+
+    // Create a new lawyer object with image URLs
+    const lawyerWithImages = {
+      ...lawyer._doc,
+      profileImage,
+      idCard,
+    };
+
+    res.status(200).json(lawyerWithImages);
   } catch (err) {
     next(err);
   }
 };
+
 
 export const getLawyers = async (req, res, next) => {
   const { city } = req.query;
 
   try {
     let query = Lawyer.find();
-    
+
     if (city) {
       query = query.where({ city }); // Apply city filter if provided
     }
@@ -66,9 +101,9 @@ export const getLawyers = async (req, res, next) => {
 
     const lawyersWithImages = await Promise.all(
       lawyers.map(async (lawyer) => {
-        // Retrieve the image URLs from Cloudinary
-        const profileImage = await cloudinary.url(lawyer.profileImage, { secure: true });
-        const idCard = await cloudinary.url(lawyer.idCard, { secure: true });
+        // Construct Cloudinary URLs using public IDs
+        const profileImage = await cloudinary.url(lawyer.profileImagePublicId, { secure: true });
+        const idCard = await cloudinary.url(lawyer.idCardPublicId, { secure: true });
 
         // Create a new lawyer object with image URLs
         return {

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Lawyerform.css';
 
-const url = "http://localhost:8800/api/lawyer/";
 
 function LawyerForm() {
     const [formData, setFormData] = useState({
@@ -27,7 +26,7 @@ function LawyerForm() {
             userData.append('idCard', idCard); // Append the file
 
             // Send the user data to your API
-            const response = await axios.post(url, userData);
+            const response = await axios.post("http://localhost:8800/api/lawyer/", userData);
             console.log(response.data);
 
             // Reset the form after successful submission

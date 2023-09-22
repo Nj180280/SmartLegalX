@@ -20,6 +20,7 @@ const Advocate = () => {
         try {
             const response = await axios.get("http://localhost:8800/api/lawyer/");
             setLawyers(response.data);
+            console.log(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
