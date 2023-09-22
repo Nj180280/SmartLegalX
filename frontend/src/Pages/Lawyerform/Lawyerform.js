@@ -9,22 +9,22 @@ function LawyerForm() {
         email: '',
         name: '',
         phone: '',
-        yoe: '',
-        id_card: '',
+        yearOfExperience: '',
     });
-    const [idCardImage, setIdCardImage] = useState('');
+    const [profileImage, setProfileImage] = useState(null);
+    const [idCard, setIdCard] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            // console.log(formData);
-            // Prepare the complete user data including the image
-            const userData = {
-                ...formData,
-                id_card: idCardImage, // Assign the image data
-            };
-            console.log(userData);
+            const userData = new FormData();
+            userData.append('email', formData.email);
+            userData.append('name', formData.name);
+            userData.append('phone', formData.phone);
+            userData.append('yearOfExperience', formData.yearOfExperience);
+            userData.append('profileImage', profileImage); // Append the file
+            userData.append('idCard', idCard); // Append the file
 
             // Send the user data to your API
             const response = await axios.post(url, userData);
@@ -35,10 +35,10 @@ function LawyerForm() {
                 email: '',
                 name: '',
                 phone: '',
-                yoe: '',
-                id_card: '', // Reset the image data
+                yearOfExperience: '', // Reset the form fields
             });
-            setIdCardImage(''); // Reset the image preview
+            setProfileImage(null); // Reset the file objects
+            setIdCard(null); // Reset the file objects
 
             console.log('User data submitted successfully:', userData);
         } catch (error) {
@@ -46,12 +46,13 @@ function LawyerForm() {
         }
     };
 
-    const handleFileUpload = async (e) => {
+    const handleFileUpload = (e, type) => {
         const file = e.target.files[0];
-        const base64 = await convertToBase64(file);
-        setIdCardImage(base64);
-
-        // Do not update formData here; it will be updated when the form is submitted
+        if (type === 'profileImage') {
+            setProfileImage(file); // Store the file object
+        } else if (type === 'idCard') {
+            setIdCard(file); // Store the file object
+        }
     };
 
 
@@ -59,12 +60,13 @@ function LawyerForm() {
         <div className="container d-flex justify-content-center align-items-center vh-100">
             <div className="registration-box p-4 shadow">
                 <h2 className="mb-4">Advocate Registration</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} enctype="multipart/form-data">
                     <div className="mb-3">
                         <label>Email:</label>
                         <input
                             type="email"
                             name="email"
+                            placeholder='enter email'
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             className="form-control"
@@ -82,14 +84,6 @@ function LawyerForm() {
                             required
                         />
                     </div>
-                    <div className='my-4 mb-3 uploads-pic'>
-                        <label htmlFor="myfile" className='mx-4'><u>Upload your Profile Picture:</u></label>
-                        <input id="myfile" type="file"
-                            name="profile_img"
-                            accept="image/*"
-                        />
-                    </div>
-                    <br/>
                     <div className="mb-3">
                         <label>Phone:</label>
                         <input
@@ -104,26 +98,39 @@ function LawyerForm() {
                     <div className="mb-3">
                         <label>Year of Experience:</label>
                         <input
-                            type="number"
-                            name="yearofexp"
-                            value={formData.yoe}
-                            onChange={(e) => setFormData({ ...formData, yoe: e.target.value })}
+                            type="text"
+                            name="yearOfExperience"
+                            value={formData.yearOfExperience}
+                            onChange={(e) => setFormData({ ...formData, yearOfExperience: e.target.value })}
                             className="form-control"
+                            placeholder='Eg : 2011 - present'
                             required
                         />
                     </div>
                     <div className='my-4 mb-3 uploads'>
-                        <label htmlFor="myfile" className='mx-4'><u>Upload your ID:</u></label>
-                        <input id="myfile" type="file"
-                            name="id_card"
-                            accept=".jpeg, .png, .jpg"
-                            onChange={(e) => handleFileUpload(e)} 
+                        <label htmlFor="profileImage" className='mx-4'><u>Upload your Profile Picture:</u></label>
+                        <input
+                            id="profileImage"
+                            type="file"
+                            name="profileImage"
+                            onChange={(e) => handleFileUpload(e, 'profileImage')}
+                            required
                         />
                     </div>
-                    <br/>
-                    <img src={idCardImage} alt="ID Card" />
-                    <br/>
-                    <br/>
+                    <br />
+
+                    <div className='my-4 mb-3 uploads'>
+                        <label htmlFor="idCard" className='mx-4'><u>Upload your ID:</u></label>
+                        <input
+                            id="idCard"
+                            type="file"
+                            name="idCard"
+                            onChange={(e) => handleFileUpload(e, 'idCard')}
+                            required
+                        />
+                    </div>
+                    <br />
+                    <br />
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
@@ -132,16 +139,3 @@ function LawyerForm() {
 }
 
 export default LawyerForm;
-
-function convertToBase64(file) {
-    return new Promise((resolve, reject) => {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = () => {
-            resolve(fileReader.result);
-        };
-        fileReader.onerror = (error) => {
-            reject(error);
-        };
-    });
-}

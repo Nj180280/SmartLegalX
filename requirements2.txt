@@ -7,3 +7,12 @@ transformers
 sentence_transformers
 faiss_cpu
 chainlit
+ctransformers
+
+flask
+flask_cors
+flask[async]
+frontend
+PyMuPDF
+fitz
+python-docx

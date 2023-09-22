@@ -1,8 +1,27 @@
 import Lawyer from "../models/Lawyer.js";
+import cloudinary from '../config/cloudinary.js'; // Import the Cloudinary configuration
 
 export const createLawyer = async (req, res, next) => {
-  const newLawyer = new Lawyer(req.body);
+  const { email, name, phone, yearOfExperience } = req.body;
+  const profileImage = req.files.profileImage[0];
+  const idCard = req.files.idCard[0];
+
   try {
+    // Upload profileImage to Cloudinary
+    const profileImageResult = await cloudinary.uploader.upload(profileImage.path);
+
+    // Upload idCard to Cloudinary
+    const idCardResult = await cloudinary.uploader.upload(idCard.path);
+
+    const newLawyer = new Lawyer({
+      email,
+      name,
+      phone,
+      yearOfExperience,
+      profileImage: profileImageResult.secure_url,
+      idCard: idCardResult.secure_url,
+    });
+
     const savedLawyer = await newLawyer.save();
     res.status(200).json(savedLawyer);
   } catch (err) {
@@ -10,16 +29,6 @@ export const createLawyer = async (req, res, next) => {
   }
 };
 
-
-
-export const updateLawyer = async (req, res, next) => {
-  try {
-    const updatedLawyer = await Lawyer.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
-    res.status(200).json(updatedLawyer);
-  } catch (err) {
-    next(err);
-  }
-};
 
 export const deleteLawyer = async (req, res, next) => {
   try {
@@ -39,119 +48,91 @@ export const getLawyer = async (req, res, next) => {
   }
 };
 
-export const topLawyers = async (req, res, next) => {
-  try {
-    const Lawyers = await Lawyer.find();
-
-    Lawyers.sort((a, b) => {
-      const ratingA = parseFloat(a.rating.split("/")[0]);
-      const ratingB = parseFloat(b.rating.split("/")[0]);
-      return ratingB - ratingA;
-    });
-    const top6Lawyers = Lawyers.slice(0, 6);
-    res.status(200).json(top6Lawyers);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'An error occurred' });
-  }
-};
-
-
 export const getLawyers = async (req, res, next) => {
   const { city } = req.query;
+
   try {
+    let query = Lawyer.find();
+    
     if (city) {
-      const Lawyers = await Lawyer.find({ city });
-      res.status(200).json(Lawyers);
+      query = query.where({ city }); // Apply city filter if provided
     }
-    else {
-      const Lawyers = await Lawyer.find();
-      res.status(200).json(Lawyers);
+
+    const lawyers = await query.exec();
+
+    if (lawyers.length === 0) {
+      return res.status(404).json({ error: "No lawyers found." });
     }
+
+    const lawyersWithImages = await Promise.all(
+      lawyers.map(async (lawyer) => {
+        // Retrieve the image URLs from Cloudinary
+        const profileImage = await cloudinary.url(lawyer.profileImage, { secure: true });
+        const idCard = await cloudinary.url(lawyer.idCard, { secure: true });
+
+        // Create a new lawyer object with image URLs
+        return {
+          ...lawyer._doc,
+          profileImage,
+          idCard,
+        };
+      })
+    );
+
+    res.status(200).json(lawyersWithImages);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'An error occurred' });
   }
 };
 
-export const addReview = async (req, res, next) => {
-  try {
-    const { LawyerId,userName, content, rating } = req.body;
-
-    const Lawyer = await Lawyer.findById(LawyerId);
-
-    if (!Lawyer) {
-      return res.status(404).json({ message: 'Lawyer not found' });
-    }
-
-    const newReview = {
-      userName,
-      content,
-      rating,
-    };
-
-    Lawyer.reviews.push(newReview);
-
-    // Calculate the new average rating for the Lawyer based on the appended review
-    const totalReviews = Lawyer.reviews.length;
-    const totalRating = Lawyer.reviews.reduce((sum, review) => sum + review.rating, 0);
-    const updatedRating = (totalRating / totalReviews).toFixed(1);
-    Lawyer.rating = `${updatedRating} /5`;
-
-    await Lawyer.save();
-
-    res.status(200).json({ message: 'Review added successfully', Lawyer });
-  } catch (error) {
-    next(error);
-  }
-};
 
 
 // export const getLawyers = async (req, res, next) => {
-//   const { min, max, ...others } = req.query;
+//   const { city } = req.query;
+
 //   try {
-//     const query = {
-//       ...others,
-//       cheapestPrice: { $gt: min || 1, $lt: max || 325436478 },
-//     };
-//     const Lawyers = await Lawyer.find(query).limit(parseInt(req.query.limit));
-//     res.status(200).json(Lawyers);
-//   } catch (err) {
-//     next(err);
+//     if (city) {
+//       const lawyers = await Lawyer.find({ city });
+//       const lawyersWithImages = await Promise.all(
+//         lawyers.map(async (lawyer) => {
+//           // Retrieve the image URLs from Cloudinary
+//           const profileImage = await cloudinary.url(lawyer.profileImage, { secure: true });
+//           const idCard = await cloudinary.url(lawyer.idCard, { secure: true });
+
+//           // Create a new lawyer object with image URLs
+//           return {
+//             ...lawyer._doc,
+//             profileImage,
+//             idCard,
+//           };
+//         })
+//       );
+//       res.status(200).json(lawyersWithImages);
+//     }
+
+//     else {
+//       const lawyers = await Lawyer.find();
+//       const lawyersWithImages = await Promise.all(
+//         lawyers.map(async (lawyer) => {
+//           // Retrieve the image URLs from Cloudinary
+//           const profileImage = await cloudinary.url(lawyer.profileImage, { secure: true });
+//           const idCard = await cloudinary.url(lawyer.idCard, { secure: true });
+
+//           // Create a new lawyer object with image URLs
+//           return {
+//             ...lawyer._doc,
+//             profileImage,
+//             idCard,
+//           };
+//         })
+//       );
+//       res.status(200).json(lawyersWithImages);
+//     }
+//   }
+
+//   catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: 'An error occurred' });
 //   }
 // };
-
-export const countByCity = async (req, res, next) => {
-  const cities = req.query.cities.split(",");
-  try {
-    const list = await Promise.all(cities.map((city) => Lawyer.countDocuments({ city })));
-    res.status(200).json(list);
-  } catch (err) {
-    next(err);
-  }
-};
-
-export const countByType = async (req, res, next) => {
-  try {
-    const counts = await Lawyer.aggregate([
-      { $group: { _id: "$type", count: { $sum: 1 } } },
-      { $project: { type: "$_id", count: 1, _id: 0 } },
-    ]);
-    res.status(200).json(counts);
-  } catch (err) {
-    next(err);
-  }
-};
-
-export const getLawyerRooms = async (req, res, next) => {
-  try {
-    const Lawyer = await Lawyer.findById(req.params.id);
-    const roomPromises = Lawyer.rooms.map((roomId) => Room.findById(roomId));
-    const rooms = await Promise.all(roomPromises);
-    res.status(200).json(rooms);
-  } catch (err) {
-    next(err);
-  }
-};
-
-

@@ -15,11 +15,15 @@ const LawyerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    password: {
+    yearOfExperience: {
       type: String,
       required: true,
     },
-    id_card: {
+    profileImage: {
+      type: String,
+      required: true
+    },
+    idCard: {
       type: String,
       required: true
     }

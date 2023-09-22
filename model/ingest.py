@@ -3,7 +3,8 @@ from langchain.vectorstores import FAISS
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter 
 
-DATA_PATH = 'D:/technovate/SmartLeagalX_chatbot/data'
+# DATA_PATH = 'D:/technovate/SmartLeagalX_chatbot/data'
+DATA_PATH = 'D:/35_ZXC/model/data'
 DB_FAISS_PATH = 'vectorstore/db_faiss'
 
 # Create vector database

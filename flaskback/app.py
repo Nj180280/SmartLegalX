@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
+import flask_cors
 from transformers import pipeline
 import fitz  # PyMuPDF library for PDF text extraction
 import os
+import traceback
+
 from werkzeug.utils import secure_filename
+from datetime import datetime
+from docx import Document
 
 app = Flask(__name__)
 CORS(app, expose_headers='Authorization')
@@ -220,4 +225,6 @@ def anti_ragging_document():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", use_reloader=False)
+    app.run(debug=True,host="0.0.0.0",use_reloader=False)
+
+flask_cors.CORS(app, expose_headers='Authorization')
